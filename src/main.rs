@@ -66,7 +66,8 @@ fn main() {
                     timeloop::Topic::Text => format!("{}/set/text", mqtt_base_topic),
                 };
 
-                mqtt::publish(&mqtt_client, &topic_string, text, mqtt_qos).expect("failed to publish to mqtt")
+                mqtt::publish(&mqtt_client, &topic_string, text, mqtt_qos)
+                    .expect("failed to publish to mqtt")
             });
         }
     }
