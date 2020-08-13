@@ -99,12 +99,12 @@ jobs:
         run: |
           rm -f *.zip
           cd target/${{ matrix.config.triple }}/release
-          zip -r ../../../network-stalker-${{ matrix.config.triple }}.zip network-stalker
+          zip -r ../../../led-matrix-countdown-${{ matrix.config.triple }}.zip led-matrix-countdown
       - name: Pack release zip (windows)
         if: runner.os == 'Windows'
         run: |
           del *.zip
-          Compress-Archive -CompressionLevel Optimal -Force -Path target/${{ matrix.config.triple }}/release/network-stalker.exe -DestinationPath network-stalker-${{ matrix.config.triple }}.zip
+          Compress-Archive -CompressionLevel Optimal -Force -Path target/${{ matrix.config.triple }}/release/led-matrix-countdown.exe -DestinationPath led-matrix-countdown-${{ matrix.config.triple }}.zip
 
       - name: inspect target dir
         if: runner.os == 'Linux' || runner.os == 'macOS'
@@ -116,14 +116,14 @@ jobs:
         if: runner.os == 'Linux' || runner.os == 'macOS'
         uses: actions/upload-artifact@v2
         with:
-          name: network-stalker-${{ matrix.config.triple }}
-          path: target/${{ matrix.config.triple }}/release/network-stalker
+          name: led-matrix-countdown-${{ matrix.config.triple }}
+          path: target/${{ matrix.config.triple }}/release/led-matrix-countdown
       - name: Release Artifact (windows)
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v2
         with:
-          name: network-stalker-${{ matrix.config.triple }}
-          path: target/${{ matrix.config.triple }}/release/network-stalker.exe
+          name: led-matrix-countdown-${{ matrix.config.triple }}
+          path: target/${{ matrix.config.triple }}/release/led-matrix-countdown.exe
 
       - name: GH Release
         if: startsWith(github.ref, 'refs/tags/')
