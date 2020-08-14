@@ -13,8 +13,6 @@ Everyone else can then easily see how much time is left.
 ### MQTT
 
 ```
-led-matrix-countdown-mqtt
-
 USAGE:
     led-matrix-countdown mqtt [FLAGS] [OPTIONS] <STARTTIME> <ENDTIME>
 
@@ -39,5 +37,19 @@ ARGS:
 ### HTTP
 
 ```
-TODO
+USAGE:
+    led-matrix-countdown http [FLAGS] [OPTIONS] <STARTTIME> <ENDTIME>
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+    -v, --verbose    Show each time tick on stdout
+
+OPTIONS:
+    -s, --server <URI>         Specify the HTTP Server [default: http://esp-matrix/]
+        --end-text <STRING>    Text which is displayed when the countdown ends. [default: THE END \o/]
+
+ARGS:
+    <STARTTIME>    Start time of the Meeting. From then the remaining time is published
+    <ENDTIME>      End time of the Meeting. Until then the remaining time is published.
 ```

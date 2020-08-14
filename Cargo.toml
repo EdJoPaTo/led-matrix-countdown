@@ -13,6 +13,10 @@ chrono = "0.4"
 version = "2.33"
 features = ["wrap_help"]
 
+[dependencies.reqwest]
+version = "0.10"
+features = ["blocking"]
+
 [dependencies.paho-mqtt]
 version = "0.7"
 default-features = false

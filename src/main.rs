@@ -41,6 +41,31 @@ fn main() {
             "endtime has to be in the future"
         );
 
+        if let Some(http_matches) = matches.subcommand_matches("http") {
+            let server = http_matches
+                .value_of("HTTP Server")
+                .expect("HTTP Server could not be read from command line");
+
+            assert!(server.starts_with("http"));
+            assert!(server.ends_with('/'));
+
+            let client = reqwest::blocking::Client::new();
+
+            timeloop::timeloop(start, end, end_text, verbose, |topic, text| {
+                let url = match topic {
+                    timeloop::Topic::Hue => format!("{}hue", server),
+                    timeloop::Topic::Sat => format!("{}sat", server),
+                    timeloop::Topic::Text => format!("{}text", server),
+                };
+
+                client
+                    .post(&url)
+                    .body(text.to_owned())
+                    .send()
+                    .expect("failed to publish via http");
+            });
+        }
+
         if let Some(mqtt_matches) = matches.subcommand_matches("mqtt") {
             let mqtt_server = mqtt_matches
                 .value_of("MQTT Server")
