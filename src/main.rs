@@ -27,18 +27,19 @@ fn main() {
             .value_of("end text")
             .expect("end text could not be read from command line");
 
-        if end.timestamp() - start.timestamp() < 0 {
-            panic!("endtime has to be after starttime")
-        }
-
         let now = Local::now();
-        if end.timestamp() - now.timestamp() < 0 {
-            panic!("endtime has to be in the future")
-        }
-
         println!("Now:   {}", now.time());
         println!("Start: {}", start.time());
         println!("End:   {}", end.time());
+
+        assert!(
+            end.timestamp() - start.timestamp() > 0,
+            "endtime has to be after starttime"
+        );
+        assert!(
+            end.timestamp() - now.timestamp() > 0,
+            "endtime has to be in the future"
+        );
 
         if let Some(mqtt_matches) = matches.subcommand_matches("mqtt") {
             let mqtt_server = mqtt_matches
