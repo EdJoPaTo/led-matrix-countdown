@@ -1,5 +1,5 @@
 use chrono::{DateTime, Local, NaiveTime};
-use clap::{App, Arg, SubCommand};
+use clap::{App, AppSettings, Arg, SubCommand};
 
 pub fn build_cli() -> App<'static, 'static> {
     let generic_args = [
@@ -27,6 +27,7 @@ pub fn build_cli() -> App<'static, 'static> {
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .about("Utility to send the remaining time of something (e.g. a meeting) via MQTT or HTTP to a small display.")
+        .setting(AppSettings::SubcommandRequired)
         .subcommand(SubCommand::with_name("http")
             .args(&generic_args)
             .arg(Arg::with_name("HTTP Server")
