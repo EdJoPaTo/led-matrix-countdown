@@ -1,4 +1,5 @@
-use chrono::offset::Local;
+use crate::timeloop::TIMEFORMAT;
+use chrono::Local;
 
 mod cli;
 mod mqtt;
@@ -28,9 +29,9 @@ fn main() {
             .expect("end text could not be read from command line");
 
         let now = Local::now();
-        println!("Now:   {}", now.time());
-        println!("Start: {}", start.time());
-        println!("End:   {}", end.time());
+        println!("Now:   {}", now.format(TIMEFORMAT));
+        println!("Start: {}", start.format(TIMEFORMAT));
+        println!("End:   {}", end.format(TIMEFORMAT));
 
         assert!(
             end.timestamp() - start.timestamp() > 0,

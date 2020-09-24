@@ -4,6 +4,8 @@ use std::time::Duration;
 
 mod math;
 
+pub const TIMEFORMAT: &str = "%_H:%M:%S";
+
 pub enum Topic {
     Hue,
     Sat,
@@ -36,7 +38,7 @@ pub fn timeloop<F>(
         if verbose {
             println!(
                 "{} {:6} sec {:4} min {:2.2}%",
-                now.time(),
+                now.format(TIMEFORMAT),
                 remaining_seconds,
                 remaining_minutes,
                 position * 100.0,
