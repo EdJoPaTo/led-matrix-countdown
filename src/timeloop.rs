@@ -68,7 +68,7 @@ pub fn timeloop<F>(
     }
 
     if verbose {
-        println!("{} end!", Local::now().time());
+        println!("{} end!", Local::now().format(TIMEFORMAT));
     }
 
     publish(Topic::Text, end_text);
