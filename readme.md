@@ -1,4 +1,5 @@
 # LED Matrix Countdown
+![Rust](https://github.com/EdJoPaTo/led-matrix-countdown/workflows/Rust/badge.svg)
 
 This tool was created in order to learn Rust and to work with [esp-http-neomatrix-text](https://github.com/EdJoPaTo/esp-http-neomatrix-text) and [esp-mqtt-neomatrix-text](https://github.com/EdJoPaTo/esp-mqtt-neomatrix-text).
 
